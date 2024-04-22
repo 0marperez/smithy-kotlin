@@ -24,6 +24,7 @@ plugins {
     // since build-plugins also has <some> version in its dependency closure
     alias(libs.plugins.kotlin.multiplatform) apply false
     alias(libs.plugins.kotlin.jvm) apply false
+    id("artifact-size-metrics") version "0.4.2"
 }
 
 val testJavaVersion = typedProp<String>("test.java.version")?.let {
