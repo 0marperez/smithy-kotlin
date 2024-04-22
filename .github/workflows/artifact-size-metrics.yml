@@ -24,7 +24,7 @@ jobs:
           role-to-assume: ${{ secrets.CI_AWS_ROLE_ARN }}
           aws-region: us-west-2
       - name: Generate Artifact Size Metrics
-        run: ./gradlew artifactMetrics
+        run: ./gradlew artifactSizeMetrics
       - name: Save Artifact Size Metrics
         run: |
           cd build/reports/metrics/
