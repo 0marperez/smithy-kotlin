@@ -27,6 +27,12 @@ plugins {
     id("artifact-size-metrics") version "0.4.2"
 }
 
+artifactSizeMetrics {
+    artifactPrefixes = setOf(":codegen", ":runtime")
+    significantChangeThresholdPercentage = 5.0
+    projectRepositoryName = "smithy-kotlin"
+}
+
 val testJavaVersion = typedProp<String>("test.java.version")?.let {
     JavaLanguageVersion.of(it)
 }?.also {
