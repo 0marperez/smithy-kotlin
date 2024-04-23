@@ -18,6 +18,12 @@ jobs:
     steps:
       - name: Checkout Sources
         uses: actions/checkout@v4
+      - name: Configure JDK
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'corretto'
+          java-version: 17
+          cache: 'gradle'
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
@@ -34,11 +40,17 @@ jobs:
       - name: Put Artifact Size Metrics in CloudWatch
         run: ./gradlew putArtifactSizeMetricsInCloudWatch -Prelease=${{ github.event.release.tag_name }}
   size-check:
-    if: github.event_name == 'pull_request' # TODO: NOT FOR LABELLING AND STUFF
+    if: github.event_name == 'pull_request'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Sources
         uses: actions/checkout@v4
+      - name: Configure JDK
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'corretto'
+          java-version: 17
+          cache: 'gradle'
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
